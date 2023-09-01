@@ -1,0 +1,63 @@
+﻿@model db_TO_web.Models.TO.CarList
+
+@{
+    ViewData["Title"] = "CreateCar";
+}
+
+<h1>CreateCar</h1>
+
+<h4>CarList</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateCar">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ModelId" class="control-label"></label>
+                <select asp-for="ModelId" class="form-control" asp-items="ViewBag.Models"></select>
+                @*@Html.DropDownListFor(n => n.ModelId, new SelectList(ViewBag.Models, "ModelId", "Name"))*@
+            </div>
+            <div class="form-group">
+                <label asp-for="AutoType" class="control-label"></label>
+                <input asp-for="AutoType" class="form-control" />
+                <span asp-validation-for="AutoType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VIN" class="control-label"></label>
+                <input asp-for="VIN" class="form-control" />
+                <span asp-validation-for="VIN" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateOfRegistration" class="control-label"></label>
+                <input asp-for="DateOfRegistration" class="form-control" />
+                <span asp-validation-for="DateOfRegistration" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateOfDeregistration" class="control-label"></label>
+                <input asp-for="DateOfDeregistration" class="form-control" />
+                <span asp-validation-for="DateOfDeregistration" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastToDate" class="control-label"></label>
+                <input asp-for="LastToDate" class="form-control" />
+                <span asp-validation-for="LastToDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CurrentTraveled" class="control-label"></label>
+                <input asp-for="CurrentTraveled" class="form-control" />
+                <span asp-validation-for="CurrentTraveled" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="CarList">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,80 @@
+﻿@model IEnumerable<db_TO_web.Models.TO.CarList>
+
+@{
+    ViewData["Title"] = "Carlist";
+}
+
+<h1>Список автомобилей</h1>
+
+<form method="get">
+
+    <div class="form-inline">
+        <label class="control-label"> АйдиМодели: </label>
+        @*<select asp-for="ModelId" class="form-control" asp-items="ViewBag.Models"></select>*@
+        @Html.DropDownList("ModelId", ViewBag.Models as SelectList, htmlAttributes: new { @class = "form-control" })
+        <input type="submit" value="Фильтр" class="btn btn-default" />
+    </div>
+</form>
+<p>
+    <a asp-action="CreateCar">Добавить машину</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ModelId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AutoType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VIN)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateOfRegistration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateOfDeregistration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastToDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CurrentTraveled)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.ModelId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AutoType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VIN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfRegistration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfDeregistration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastToDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CurrentTraveled)
+            </td>
+            <td>
+                <a asp-action="EditCar" asp-route-id="@item.CarListId">Edit</a> |
+                <a asp-action="DeleteCar" asp-route-id="@item.CarListId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
